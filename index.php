@@ -14,3 +14,5 @@
  */
  
 echo "hello word github,i am coming_basjdkj——超级快哈开始";
+
+echo "这是一次提交测试";
