@@ -4,14 +4,14 @@ layout: nil
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  
- <title>Ruoyu Sun's Thoughts on design and code</title>
- <link href="http://ruoyusun.com/atom.xml" rel="self"/>
- <link href="http://ruoyusun.com"/>
+ <title>80AJ_Coder</title>
+ <link href="http://blog.80aj.com/atom.xml" rel="self"/>
+ <link href="http://blog.80aj.com"/>
  <updated>{{ site.time | date_to_xmlschema }}</updated>
- <id>http://ruoyusun.com</id>
+ <id>http://blog.80aj.com</id>
  <author>
-   <name>Ruoyu Sun</name>
-   <email>ruoysun@gmail.com</email>
+   <name>80AJ</name>
+   <email>cfrs2005@gmail.com.com</email>
  </author>
 
  {% for post in site.posts %}
@@ -19,7 +19,7 @@ layout: nil
    <title>{{ post.title }}</title>
    <link href="http://ruoyusun.com{{ post.url }}"/>
    <updated>{{ post.date | date_to_xmlschema }}</updated>
-   <id>http://ruoyusun.com{{ post.id }}</id>
+   <id>http://blog.80aj.com{{ post.id }}</id>
    <content type="html">{{ post.content | xml_escape }}</content>
  </entry>
  {% endfor %}
