@@ -1,0 +1,64 @@
+---
+title: 140114 wordpress源生代码实现SEO
+layout: post
+permalink: /2696.html
+views:
+  - 40
+categories:
+  - Code
+tags:
+  - M2
+  - seo
+  - wordpress
+  - 模板
+  - 源生代码
+---
+很早之前看到macdang.com的时候，觉得这套模板很清新，比较适合coder做自己的技术博客，想把自己的博客模板也换成这个。可惜查看相关代码没有找到模板作者。昨天查看wopus的时候看到了这套模板： 原名为**M2模板**。作者通过最wordpress源生php代码实现了翻页，阅读计数等常见插件的功能，不过对于seo这一块并没有做，这里补充下实现wordpress 源生代码实现Seo .
+
+以下代码替换模板代码 header.php中 部分:
+
+<pre class="brush: php; title: ; notranslate" title="">&lt;?php
+if (is_home ()) {
+	$keywords = "相关关键字描述";
+	$description = "相关desc描述";
+} elseif (is_single ()) {
+	if ($post-&gt;post_excerpt) {
+		$description = $post-&gt;post_excerpt;
+	} else {
+		$str = csubstr ( strip_tags ( $post-&gt;post_content ), 0, 220 );
+		$str = trim ( $str );
+		$str = strip_tags ( $str, "" );
+		$str = ereg_replace ( "\t", "", $str );
+		$str = ereg_replace ( "\r\n", "", $str );
+		$str = ereg_replace ( "\r", "", $str );
+		$str = ereg_replace ( "\n", "", $str );
+		$str = ereg_replace ( " ", " ", $str );
+		$description = trim ( $str );
+	}
+	$keywords = "";
+	$tags = wp_get_post_tags ( $post-&gt;ID );
+	foreach ( $tags as $tag ) {
+		$keywords = $keywords . $tag-&gt;name . ", ";
+	}
+}
+?&gt;
+&lt;title&gt;&lt;?php
+global $page, $paged;
+wp_title ( '|', true, 'right' );
+bloginfo ( 'name' );
+$site_description = get_bloginfo ( 'description', 'display' );
+if ($site_description && (is_home () || is_front_page ()))
+	echo " | $site_description";
+if ($paged &gt;= 2 || $page &gt;= 2)
+	echo ' | ' . sprintf ( __ ( 'Page %s' ), max ( $paged, $page ) );
+?&gt;&lt;/title&gt;
+&lt;meta name="keywords" content="&lt;?=$keywords?&gt;" /&gt;
+&lt;meta name="description" content="&lt;?=$description?&gt;" /&gt;
+</pre>
+
+<pre><h3>
+  本文资料:
+</h3>
+www.macdang.com  mac党 主要是下载破解mac软件的，目前已经不怎么更新
+www.mangguo.org  m2 主题作者
+</pre>

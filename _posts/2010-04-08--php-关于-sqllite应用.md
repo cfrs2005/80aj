@@ -1,0 +1,58 @@
+---
+title: 100408 php 关于 sqllite应用
+layout: post
+permalink: /1012.html
+related_posts:
+  - 'a:2:{s:4:"time";s:10:"1292278937";s:13:"related_posts";s:1970:"<ul class="related_post"><li><a href="http://blog.80aj.com/2010/04/15/100415-%e4%b8%80%e4%b8%aa%e5%a5%b3%e7%a8%8b%e5%ba%8f%e5%91%98%e7%9a%84%e5%be%81%e5%a9%9appt/" title="100415 一个女程序员的征婚ppt">100415 一个女程序员的征婚ppt</a></li><li><a href="http://blog.80aj.com/2010/04/07/100407-php-url_encode-%e5%8a%a0%e5%af%86%e8%a7%a3%e5%af%86%e5%87%bd%e6%95%b0/" title="100407 php url_encode 加密解密函数 ">100407 php url_encode 加密解密函数 </a></li><li><a href="http://blog.80aj.com/guestbook/" title="关于">关于</a></li><li><a href="http://blog.80aj.com/2010/12/04/101204-phpase-%e5%8a%a0%e5%af%86/" title="101204 phpase 加密">101204 phpase 加密</a></li><li><a href="http://blog.80aj.com/2010/10/30/101030-%e6%96%87%e4%bb%b6%e6%8a%93%e5%8f%96-snoopy%e7%b1%bb%e4%bb%8b%e7%bb%8d/" title="101030 文件抓取 snoopy类介绍">101030 文件抓取 snoopy类介绍</a></li><li><a href="http://blog.80aj.com/2010/10/29/101029-php-%e4%ba%a7%e5%93%81%e5%ae%89%e8%a3%85%e7%a8%8b%e5%ba%8f%e5%88%b6%e4%bd%9c%e4%bb%a3%e7%a0%81demo/" title="101029 php 产品安装程序制作代码demo">101029 php 产品安装程序制作代码demo</a></li><li><a href="http://blog.80aj.com/2010/10/28/101028-php%e9%a1%b5%e9%9d%a2%e6%89%a7%e8%a1%8c%e6%97%b6%e9%97%b4class/" title="101028 php页面执行时间class">101028 php页面执行时间class</a></li><li><a href="http://blog.80aj.com/2010/09/13/100913-php%e6%8b%9b%e8%81%98%e5%b9%bf%e5%91%8a%e4%b8%80%e5%88%99/" title="100913 PHP招聘广告一则">100913 PHP招聘广告一则</a></li><li><a href="http://blog.80aj.com/2010/08/22/100822-php-%e4%b9%a6%e7%b1%8d%e5%88%86%e4%ba%ab/" title="100822 php 书籍分享">100822 php 书籍分享</a></li><li><a href="http://blog.80aj.com/2010/08/21/100821-php%e4%b9%8b%e8%85%be%e8%ae%af%e5%be%ae%e5%8d%9a-api-%e4%bf%ae%e6%94%b9%e7%89%88/" title="100821 php之腾讯微博 Api 修改版">100821 php之腾讯微博 Api 修改版</a></li></ul>";}'
+bot_views:
+  - 179
+views:
+  - 694
+duoshuo_thread_id:
+  - 1280248249638191169
+categories:
+  - DataBase
+tags:
+  - 80slife
+  - PHP
+  - PHP链接sqllite方法
+  - sqllite
+---
+[<img class="aligncenter size-medium wp-image-1013" title="sqllite" src="http://www.80aj.com/wp-content/uploads/2010/04/sqllite-300x251.jpg" alt="" width="300" height="251" />][1]
+
+关于cs客户端的保存 用户信息 一般用的都是sqllite 。这次公司的 模块自由化开发中 需要 用php 帮助生成 数据库 让用户去下载。【具体的话是关于cs异步升级-_-超强概念】
+
+下面是关于一些sqllite介绍 以及php运用方法:
+
+SQLite介绍
+
+自几十年前出现的商业应用程序以来，数据库就成为软件应用程序的主要组成部分。正与数据库管理系统非常关键一样，它们也变得非常庞大，并占用了相当多的系统资源，增加了管理的复杂性。随着软件应用程序逐渐模块模块化，一种新型数据库会比大型复杂的传统数据库管理系统更适应。嵌入式数据库直接在应用程序进程中运行，提供了零配置（zero-configuration）运行模式，并且资源占用非常少。
+
+SQLite是一个开源的嵌入式关系数据库，它在2000年由D. Richard Hipp发布，它的减少应用程序管理数据的开销，SQLite可移植性好，很容易使用，很小，高效而且可靠。
+
+SQLite嵌入到使用它的应用程序中，它们共用相同的进程空间，而不是单独的一个进程。从外部看，它并不像一个RDBMS，但在进程内部，它却是完整的，自包含的数据库引擎。
+
+嵌入式数据库的一大好处就是在你的程序内部不需要网络配置，也不需要管理。因为客户端和服务器在同一进程空间运行。SQLite 的数据库权限只依赖于文件系统，没有用户帐户的概念。SQLite 有数据库级锁定，没有网络服务器。它需要的内存，其它开销很小，适合用于嵌入式设备。你需要做的仅仅是把它正确的编译到你的程序。
+
+PHP 关于  sqllite 使用方法:
+
+> <?php  
+> $db=sqlite_open(&#8220;db.sqlite&#8221;); //打开db.sqlite数据库，如果不存在则尝试创建。  
+> sqlite_query($db,&#8221;drop table test&#8221;);  
+> sqlite_query($db,&#8221;create table test (id INTEGER PRIMARY KEY,name text);&#8221;); //创建test表，id字段为自动递增主键  
+> sqlite_query($db,&#8221;insert into test (name) values(&#8216;hello&#8217;);&#8221;); //插入一行内容  
+> sqlite_query($db,&#8221;insert into test (name) values(&#8216;world&#8217;);&#8221;);//插入一行内容  
+> $result=sqlite_query($db,&#8221;select * from test&#8221;); //取得test表的所有内容  
+> while($row=sqlite\_fetch\_array($result)) { //通过while循环表中所有内容  
+> print &#8220;<br>&#8221;;  
+> print_r($row);  
+> print &#8220;<br>&#8221;;  
+> }  
+> sqlite_close($db);//关闭数据库的连接  
+> ?>
+
+百度百科  sqllite：
+
+<http://baike.baidu.com/view/1447600.htm?fr=ala0_1>
+
+ [1]: http://www.80aj.com/wp-content/uploads/2010/04/sqllite.jpg
