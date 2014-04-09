@@ -8,9 +8,9 @@ safe:  false
 title: Jekyll Theme
 description: Just another Jekyll theme design and code by zhanxin.info.
 keywords: Jekyll Theme
-url: http://pizn.github.io/kunka
+url: http://blog.80aj.com
 feed: /atom.xml
-favicon: http://jekyllrb.com/favicon.png
+favicon: http://blog.80aj.com/favicon.png
 
 #Nav config
 nav:
