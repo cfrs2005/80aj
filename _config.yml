@@ -1,6 +1,6 @@
-name:   'libfeihu Blog'
-url:    'http://feihu.me'
-author: 'feihu'
+name:   '80aj_coder Blog'
+url:    'http://blog.80aj.com'
+author: '80aj'
 
 include:  ['_pages']
 
