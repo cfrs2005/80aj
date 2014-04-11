@@ -1,13 +1,20 @@
-##Kunka
+This is feihu's blog. The source code of this site is forked from [pixelcog.com](http://pixelcog.com/)
 
-> 这只是另外一个 Jekyll 主题文件。
+--------
+Here is the original license from [pixelcog.com](http://pixelcog.com/)
 
-![kunka blog theme](images/blog.jpg)
+## License
 
-###使用方法
+This work is copyright © 2013 PixelCog Inc.  All rights reserved.  
+"[Minimal](https://github.com/orderedlist/minimal)" theme copyright © [Steve Smith](http://orderedlist.com/) and licenced under [Creative Commons Attribution-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0/)
 
-* 把主题文件 clone 到你本地服务器，添加文章到 ```_posts``` 文件夹。
-* 修改 ```_config.yml```，里面有很多可以配置的选项。
-* 运行 ```jekyll server```，浏览器打开 http://localhost:4000 便可以看到新的主题。
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 
-更多的介绍，详见[Jekyll 博客主题 Kunka](http://www.zhanxin.info/jekyll/2013-08-11-jekyll-theme-kunka.html)。
+- All files and content within `/img`, `/_posts`, and `/_pages` may not be reused or published.
+- Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+- Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+
+## Legal Stuff
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

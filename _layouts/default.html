@@ -1,128 +1,75 @@
-<!DOCTYPE html>
+{% capture location %}{{ page.url | remove_first:'/' | split:'/' | first }}{% endcapture %}<!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
-        <!-- meta -->
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <meta name="generator" content="Jekyll" />
-        <meta name="author" content="{{ site.author.name }}" />
-        <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}" />
-        <meta name="keywords" content="{{ page.keywords | join: ',' }}" />
-        <!-- atom -->
-        <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="{{ site.url }}{{ site.feed }}" />
-        <link rel="shortcut icon" href="{{ site.favicon }}" type="image/x-icon" />
-        <!-- font-awesome -->
-        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-        <link href='http://fonts.googleapis.com/css?family=Spirax' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="{{ site.url }}/css/syntax.css">
-        <link rel="stylesheet" href="{{ site.url }}/css/main.css">
-    </head>
-    <body>
-        <div class="head fn-clear">
-            <div class="header">
-                <h1 class="logo">
-                    <a href="{{ site.url }}"><i class="icon-anchor"></i></a>
-                </h1>
-                <nav class="nav">
-                    <ul>
-                        {% for link in site.nav %}
-                        {% assign active = nil %}
-                        {% if page.url == link.url%}
-                          {% assign active = 'nav-item-active' %}
-                        {% endif %}
-                        <li class="nav-item {{ active }}">
-                            <a href="{{ site.url }}{{ link.url }}">
-                                {{ link.text }}
-                            </a>
-                            {{ indicator }}
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </nav>
-                <div class="follow">
-                    {% for link in site.follow %}
-                    <a href="{{ link.url }}" target="_blank"><i class="{{ link.class }}"></i></a>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-        <div class="contain fn-clear">
-            <div class="container fn-clear">
-                <div class="main">
-                    {{ content }}
-                </div>
-                <div class="aside">
-                    <div class="aside-contact">
-                        <h4 class="title">About me</h4>
-                        <div class="det fn-clear">
-                            <div class="det-image">
-                                <img src="{{ site.author.imageLink }}" />
-                            </div>
-                            <div class="det-text">
-                                <p>{{ site.author.simpleIntro }}</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="aside-item">
-                        <h4 class="title">Recent Posts</h4>
-                        <ul class="list">
-                            {% for rpost in site.posts limit:6  %}
-                                <li><a href="{{ site.url }}{{ rpost.url }}" title="{{ rpost.title }}" rel="bookmark">{{ rpost.title }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-
-                    <div class="aside-item">
-                        <h4 class="title">Links</h4>
-                        <ul class="list">
-                            {% for i in site.customLinks %}
-                                {% if i.message == "Friends" %}
-                                    {% for link in i.item %}
-                                    <li><a href="{{ link.url }}" title="{{ link.text }}" target="_blank">{{ link.text }}</a></li>
-                                    {% endfor %}
-                                {% endif %}
-                            {% endfor %}
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="foot">
-            <div class="footer">
-                <p>Copyright 2013. All rights reserved. Powered by  Jekyll</p>
-            </div>
-        </div>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        {% if page.comment %}
-            {% if site.disqus.config %}
-            <script type="text/javascript">
-                //disqus
-                var disqus_shortname = '{{ site.disqus.id }}';
-                (function() {
-                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-                    (document.getElementsByTagName('head')[0] ||
-                        document.getElementsByTagName('body')[0]).appendChild(dsq);
-                })();
-            </script>
-            {% else %}
-                {% if site.duoshuo.config %}
-                <script type="text/javascript">
-                    var duoshuoQuery = {short_name:"{{ site.duoshuo.id }}"};
-                    (function() {
-                        var ds = document.createElement('script');
-                        ds.type = 'text/javascript';ds.async = true;
-                        ds.src = 'http://static.duoshuo.com/embed.js';
-                        ds.charset = 'UTF-8';
-                        (document.getElementsByTagName('head')[0]
-                        || document.getElementsByTagName('body')[0]).appendChild(ds);
-                    })();
-                </script>
-                {% endif %}
-            {% endif %}
-        {% endif %}
-    </body>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+		<title>{% if page.title %}{{ page.title }}{% else %}libfeihu{% endif %}</title>
+		
+		<link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+{% if page.blogfeed %}
+		<link rel="alternate" type="application/atom+xml" title="{{ site.name }} — Feed" href="{{ site.url }}/blog/feed.atom" />
+{% endif %}
+		<link rel="stylesheet" href="/css/main.css" />
+		<link rel="stylesheet" href="/css/syntax.css" />
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="wrapper{% if location == '' %} home{% endif %}">
+			<header>
+				<h1><a href="/"><img src="/img/libfeihu-logo.png" alt="{{ site.name }}" width="300" /></a></h1>
+				<nav><ul>
+					<li><a {% if location == 'about' %}class="active" {% endif %}href="/about/">About</a></li>
+					<li><a {% if location == 'projects' %}class="active" {% endif %}href="/projects/">Projects</a></li>
+					<li><a {% if location == 'blog' %}class="active" {% endif %}href="/blog/">Blog</a></li>
+					<li><a {% if location == 'contact' %}class="active" {% endif %}href="/contact/">Contact</a></li>
+				</ul></nav>
+			</header>
+			<section>
+				{{ content }}
+			</section>
+			<footer>
+{% if page.nobio != true %}{% if location != '' %}
+				<img class="avatar" src="http://www.gravatar.com/avatar/9ffd3273e6f33aaf9cfb1bdccb8f3010?s=144" alt="Me" />
+{% endif %}
+				<p>libfeihu is the home of <a href="/about/">feihu</a>, a programmer from Shenzhen, China.</p>
+				<p><a href="http://github.com/biluncloud">github</a> | <a href="http://www.douban.com/people/47964840/">douban</a> | <a href="http://weibo.com/u/2778164211">weibo</a></p>
+{% endif %}
+				<p>
+					<small>© {{ site.time | date: '%Y' }} libfeihu</small><br />
+					<small>Made with <a href="http://jekyllrb.com/">Jekyll</a> &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small>
+				</p>
+			</footer>
+		</div>
+		<script src="/js/scale.fix.js"></script>
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-48817497-1']);
+			_gaq.push(['_trackPageview']);
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+			
+			var disqus_shortname  = 'feihu',
+			    disqus_identifier = '{{ page.path | split:'/' | last | cgi_escape }}',
+			    disqus_url        = '{{ site.url }}{{ page.url | uri_escape }}'
+			;
+			(function() {
+				var load = function(src){
+					var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = src;
+					var e = document.getElementsByTagName('script')[0]; e.parentNode.insertBefore(s, e);
+				};
+				load(('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js');
+				load('//' + disqus_shortname + '.disqus.com/count.js');
+				if (document.getElementById('disqus_thread')) {
+					load('//' + disqus_shortname + '.disqus.com/embed.js');
+				}
+			})();
+		</script>
+	</body>
 </html>

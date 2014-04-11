@@ -1,31 +1,31 @@
 ---
 layout: default
-comment: true
+blogfeed: true
 ---
-<div class="article article-post">
-    <h2 class="title">{{ page.title }}</h2>
-    <div class="info">
-        <span class="info-title"><i class="icon-calendar"></i> Published: </span>
-        <span class="info-date">{{ page.date | date_to_string }}</span>
-        <span class="info-title"><i class="icon-folder-open"></i> Category: </span>
-        <span class="info-link"><a href="{{ site.url }}/categories.html#{{ page.category }}-ref" >{{ page.category }}</a></span>
-    </div>
-    {{ content }}
-    <nav class="article-previous fn-clear">
-        {% if page.previous %}
-        <a class="prev" href="{{ page.previous.url }}" rel="bookmark">&laquo;&nbsp;{{ page.previous.title | truncatewords:5 }}</a>
-        {% endif %}
-        {% if page.next %}
-        <a class="next" href="{{ page.next.url }}" rel="bookmark">{{ page.next.title | truncatewords:5 }}&nbsp;&raquo;</a>
-        {% endif %}
-    </nav>
-    <div class="comment">
-        {% if site.disqus.config %}
-        <div id="disqus_thread"></div>
-        {% else %}
-            {% if site.duoshuo.config %}
-            <div class="ds-thread"></div>
-            {% endif %}
-        {% endif %}
-    </div>
-</div>
+{% capture readtime %}{{ page.content | number_of_words | plus:91 | divided_by:180 }}{% endcapture %}
+
+<h1 class="post-title">{{ page.title }}</h1>
+<p class="post-meta">
+	{{ page.date | date_to_string }} &bull;
+	{% if readtime == '0' %} &lt; 1{% else %}{{ readtime }}{% endif %} min. read &bull;
+	<a href="#disqus_thread" data-disqus-identifier="{{ page.path | split:'/' | last | cgi_escape }}">Comments</a>
+</p>
+
+{% if page.image %}
+	<div class="post-banner" style="background-image: url(/img/post-banners/{{ page.image }});">
+		<img src="/img/post-banners/{{ page.image }}" alt="{{ page.title }}" />
+	</div>
+{% else %}
+	<div class="post-banner no-image">
+		<img src="/img/post-banners/no-image.gif" alt="{{ page.title }}" />
+	</div>
+{% endif %}
+
+{% comment %}This h1 tag is a workaround for maruku's wacky Table of Contents generator requirements.{% endcomment %}
+{{ content | replace: "<h1 id='table_of_contents'>Table of Contents</h1>", "<h4 id='table_of_contents'>Table of Contents:</h4>" | replace: "<ul style='list-style: none;'>", "<ul>" }}
+
+<hr />
+
+{% if post.comments != false %}
+<div id="disqus_thread"></div>
+{% endif %}
