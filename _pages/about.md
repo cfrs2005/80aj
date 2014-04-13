@@ -1,18 +1,23 @@
 ---
 permalink: /about/
 layout:    default
-title:     About feihu
+title:     About 80AJ
 nobio:     true
 ---
 
-# About feihu
+# About 80AJ
 ----------------
 
-![Me](http://www.gravatar.com/avatar/9ffd3273e6f33aaf9cfb1bdccb8f3010?s=200){: .profile .pull-right }
+![Me](http://tp4.sinaimg.cn/1884018943/180/40033761017/1){: .profile .pull-right }
 
-Hi, I'm **feihu**, a programmer from Shenzhen, China. 
+网名:**安静**
+职业:程序员
+爱好:WOW
+简介：
+胖子一枚，好吃懒做，性格不是很孤僻，情商偏低。
+
 
 ### Network
 
-Follow feihu:  
-↪ [github](http://github.com/biluncloud) | [douban](http://www.douban.com/people/47964840/) | [weibo](http://weibo.com/u/2778164211)
+Follow 80AJ:  
+↪ [OSCHINA](http://git.oschina.net/cfrs2005/) | [HOSTLOC](http://www.hostloc.com/space-uid-19485.html) | [微博](http://weibo.com/kingdomconquest)
