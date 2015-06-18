@@ -1,3 +1,12 @@
+---
+layout: post
+title: 如何写自己的文档
+description: Bonfire chinese doc
+tags:   Mew Own Documentation
+---
+
+{{ more }}
+
 # Writing Your Own Documentation
 
 Bonfire makes including documentation with your application, or even just one of your custom modules, as simple as including some text files.
